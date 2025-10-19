@@ -34,60 +34,66 @@ A comprehensive demonstration of Next.js 15 App Router features including differ
 
 ```text
 nextjs-demo/
-├── app/
-│   ├── layout.tsx                    # Root layout with navigation
-│   ├── page.tsx                      # Home page (Static)
-│   ├── globals.css                   # Global styles
-│   ├── error.tsx                     # Root error boundary
-│   ├── not-found.tsx                 # Root 404 page
-│   │
-│   ├── static/
-│   │   └── page.tsx                  # Static page example
-│   │
-│   ├── dynamic/
-│   │   ├── page.tsx                  # Dynamic (SSR) page
-│   │   ├── loading.tsx               # Loading state
-│   │   └── error.tsx                 # Error boundary
-│   │
-│   ├── isr/
-│   │   └── page.tsx                  # ISR page (30s revalidation)
-│   │
-│   ├── ssg/
-│   │   └── [id]/
-│   │       └── page.tsx              # SSG with dynamic params
-│   │
-│   ├── posts/
-│   │   ├── page.tsx                  # Posts list (ISR)
-│   │   ├── loading.tsx               # Posts loading
-│   │   └── [id]/
-│   │       ├── page.tsx              # Individual post
-│   │       ├── loading.tsx           # Post loading
-│   │       ├── error.tsx             # Post error
-│   │       └── not-found.tsx         # Post not-found
-│   │
-│   ├── parallel/
-│   │   ├── layout.tsx                # Layout with parallel routes
-│   │   ├── page.tsx                  # Main content
-│   │   ├── @team/
-│   │   │   └── page.tsx              # Team slot
-│   │   └── @analytics/
-│   │       └── page.tsx              # Analytics slot
-│   │
-│   └── photos/
-│       ├── layout.tsx                # Photos layout with modal slot
-│       ├── page.tsx                  # Photo gallery
-│       ├── [id]/
-│       │   └── page.tsx              # Full photo page
-│       └── @modal/
-│           ├── default.tsx           # Default modal (null)
-│           └── (.)[id]/
-│               └── page.tsx          # Intercepting route modal
+├── src/
+│   └── app/                          # Main application directory
+│       ├── layout.tsx                # Root layout with navigation
+│       ├── page.tsx                  # Home page (Static)
+│       ├── globals.css               # Global styles
+│       ├── error.tsx                 # Root error boundary
+│       ├── not-found.tsx             # Root 404 page
+│       │
+│       ├── static/
+│       │   └── page.tsx              # Static page example
+│       │
+│       ├── dynamic/
+│       │   ├── page.tsx              # Dynamic (SSR) page
+│       │   ├── loading.tsx           # Loading state
+│       │   └── error.tsx             # Error boundary
+│       │
+│       ├── isr/
+│       │   └── page.tsx              # ISR page (60s revalidation)
+│       │
+│       ├── ssg/
+│       │   └── [id]/
+│       │       └── page.tsx          # SSG with dynamic params
+│       │
+│       ├── posts/
+│       │   ├── page.tsx              # Posts list (ISR)
+│       │   ├── loading.tsx           # Posts loading
+│       │   └── [id]/
+│       │       ├── page.tsx          # Individual post
+│       │       ├── loading.tsx       # Post loading
+│       │       ├── error.tsx         # Post error
+│       │       └── not-found.tsx     # Post not-found
+│       │
+│       ├── parallel/
+│       │   ├── layout.tsx            # Layout with parallel routes
+│       │   ├── page.tsx              # Main content
+│       │   ├── @team/
+│       │   │   └── page.tsx          # Team slot
+│       │   └── @analytics/
+│       │       └── page.tsx          # Analytics slot
+│       │
+│       └── photos/
+│           ├── layout.tsx            # Photos layout with modal slot
+│           ├── page.tsx              # Photo gallery
+│           ├── [id]/
+│           │   └── page.tsx          # Full photo page
+│           └── @modal/
+│               ├── default.tsx       # Default modal (null)
+│               └── (.)[id]/
+│                   └── page.tsx      # Intercepting route modal
 │
+├── docs/                             # Documentation
+│   ├── QUICK_REFERENCE.md           # Quick reference guide
+│   └── SETUP_GUIDE.md               # Detailed setup guide
+├── tasks/                            # Project planning and tasks
+│   └── IMPROVEMENT_TASKS.md          # Future enhancement roadmap
 ├── package.json
 ├── tsconfig.json
-├── tailwind.config.ts
-├── postcss.config.js
-└── next.config.js
+├── biome.json                        # Biome configuration
+├── postcss.config.mjs                # PostCSS configuration
+└── next.config.ts                    # Next.js configuration
 ```
 
 ## Installation
@@ -218,22 +224,54 @@ export const dynamic = 'force-dynamic'
 ## Scripts
 
 ```bash
-pnpm dev        # Start development server with Turbopack
-pnpm build      # Build for production
-pnpm start      # Start production server
-pnpm lint       # Run Biome linting and formatting
-pnpm format     # Format code with Biome
+pnpm dev           # Start development server with Turbopack
+pnpm dev:safe      # Clean development start (removes .next cache)
+pnpm build         # Build for production with Turbopack
+pnpm start         # Start production server
+pnpm lint          # Run Biome linting and formatting
+pnpm format        # Format code with Biome
+pnpm type-check    # TypeScript type checking without build
 ```
 
 ## Technologies
 
-- **Next.js 15** - React framework with App Router
-- **React 19** - Latest React with improved features
-- **TypeScript** - Type safety and better DX
+- **Next.js 15.5.6** - React framework with App Router
+- **React 19.2.0** - Latest React with improved features
+- **TypeScript 5** - Type safety and better DX
 - **Tailwind CSS v4** - Utility-first CSS (no config needed)
-- **Biome** - Fast linting and formatting
-- **Turbopack** - Fast bundler for development
+- **Biome 2.2.6** - Fast linting and formatting (replaces ESLint + Prettier)
+- **Turbopack** - Fast bundler for development and production
 - **pnpm** - Fast, disk space efficient package manager
+
+## Next.js 15 Compatibility
+
+This demo is fully compatible with Next.js 15 and includes:
+
+- ✅ **Async `params`**: All dynamic routes properly await `params` before usage
+- ✅ **Promise-based APIs**: Correct handling of new async behavior
+- ✅ **React 19**: Optimized for the latest React features
+- ✅ **Turbopack**: Uses Turbopack for both dev and build
+- ✅ **App Router**: Modern routing patterns
+
+### Migration Notes
+
+If upgrading from older Next.js versions:
+
+- Dynamic route params are now `Promise<{ id: string }>` instead of `{ id: string }`
+- Always `await params` before accessing properties
+- Update TypeScript types accordingly
+
+## Project Planning
+
+## 🎯 Future Improvements
+
+See `/docs/tasks/IMPROVEMENT_TASKS.md` for comprehensive enhancement roadmap including:
+
+- Server Actions implementation
+- Performance monitoring dashboard
+- Advanced streaming patterns
+- Security best practices
+- PWA capabilities
 
 ## Learn More
 

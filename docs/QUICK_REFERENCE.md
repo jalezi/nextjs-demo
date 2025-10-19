@@ -1,5 +1,7 @@
 # Quick Reference Guide
 
+> **📁 Project Structure Note**: All application code is located in `src/app/` directory following Next.js best practices. When you see `app/` in examples below, the actual path is `src/app/`.
+
 ## Rendering Methods Comparison
 
 | Method | When Generated | Cache | Revalidation | Use Case | Example Route |
@@ -44,6 +46,90 @@ export const revalidate = 60
 ```typescript
 // Make entire page dynamic
 export const dynamic = 'force-dynamic'
+```
+
+## Next.js 15 Compatibility
+
+### Async Params (Required)
+
+```typescript
+// ✅ Correct (Next.js 15+)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <div>Post {id}</div>;
+}
+
+// ❌ Incorrect (will cause errors)
+export default async function Page({
+  params,
+}: {
+  params: { id: string };
+}) {
+  return <div>Post {params.id}</div>; // Error!
+}
+```
+
+### SearchParams (Also Async)
+
+```typescript
+// ✅ Correct for search params too
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { q } = await searchParams;
+  return <div>Search: {q}</div>;
+}
+```
+
+## Type-Safe Components
+
+### Using PageProps (Recommended)
+
+```typescript
+// ✅ Use Next.js built-in PageProps
+type Props = PageProps<"/posts/[id]">;
+
+export default async function PostPage({ params }: Props) {
+  const { id } = await params;
+  // TypeScript knows the structure automatically
+}
+
+// ❌ Manual type definition
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+```
+
+### Using LayoutProps (Recommended)
+
+```typescript
+// ✅ Basic layout
+type Props = LayoutProps<"/dashboard">;
+
+export default function DashboardLayout({ children }: Props) {
+  return <div>{children}</div>;
+}
+
+// ✅ Layout with parallel routes (automatically inferred)
+type Props = LayoutProps<"/parallel">;
+
+export default function ParallelLayout({ children, team, analytics }: Props) {
+  return (
+    <div>
+      {children}
+      {team}
+      {analytics}
+    </div>
+  );
+}
 ```
 
 ## Special Files
