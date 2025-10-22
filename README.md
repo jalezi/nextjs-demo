@@ -114,9 +114,8 @@ nextjs-demo/
 │
 ├── docs/                             # Documentation
 │   ├── QUICK_REFERENCE.md           # Quick reference guide
-│   └── SETUP_GUIDE.md               # Detailed setup guide
-├── tasks/                            # Project planning and tasks
-│   └── IMPROVEMENT_TASKS.md          # Future enhancement roadmap
+│   └── tasks/                        # Project planning and tasks
+│       └── IMPROVEMENT_TASKS.md      # Future enhancement roadmap
 ├── package.json
 ├── tsconfig.json
 ├── biome.json                        # Biome configuration
