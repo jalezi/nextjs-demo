@@ -48,12 +48,12 @@ export const revalidate = 60
 export const dynamic = 'force-dynamic'
 ```
 
-## Next.js 15 Compatibility
+## Next.js 16 Compatibility
 
 ### Async Params (Required)
 
 ```typescript
-// ✅ Correct (Next.js 15+)
+// ✅ Correct (Next.js 16+)
 export default async function Page({
   params,
 }: {
@@ -87,7 +87,41 @@ export default async function Page({
 }
 ```
 
-## Type-Safe Components
+### Background Processing with 'after' API
+
+```typescript
+// API route with background tasks
+import { after } from "next/server";
+
+export async function POST(request: Request) {
+  const data = await request.json();
+  
+  // Immediate processing
+  const result = await processData(data);
+  
+  // Background tasks (non-blocking)
+  after(async () => {
+    await logAnalytics(data);
+    await sendNotification(result);
+    await updateDatabase(result);
+  });
+  
+  // Immediate response
+  return Response.json({ success: true, result });
+}
+```
+
+### Server Actions vs API Routes
+
+| Feature | Server Actions | API Routes |
+|---------|---------------|------------|
+| **Usage** | Form-centric | REST endpoints |
+| **JavaScript** | Optional | Required |
+| **Enhancement** | Progressive | Client-side |
+| **Background Tasks** | Limited | Full support (after API) |
+| **Type Safety** | Built-in | Manual |
+
+### Type-Safe Components
 
 ### Using PageProps (Recommended)
 

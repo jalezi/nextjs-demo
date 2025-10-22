@@ -1,6 +1,6 @@
 # Next.js Demo App - Complete Features
 
-A comprehensive demonstration of Next.js 15 App Router features including different rendering strategies, data fetching methods, parallel routes, intercepting routes, and error handling.
+A comprehensive demonstration of Next.js 16 App Router features including different rendering strategies, data fetching methods, parallel routes, intercepting routes, API routes with background processing, and error handling.
 
 ## Features Demonstrated
 
@@ -30,6 +30,13 @@ A comprehensive demonstration of Next.js 15 App Router features including differ
 - ✅ **Parallel Routes** - Render multiple pages simultaneously
 - ✅ **Intercepting Routes** - Show modals while maintaining URL structure
 
+### API Routes & Server Actions
+
+- ✅ **Server Actions** - Form handling with progressive enhancement
+- ✅ **API Routes** - Traditional REST endpoints with modern features
+- ✅ **Background Processing** - Non-blocking tasks with 'after' API
+- ✅ **Progressive Enhancement** - Works without JavaScript
+
 ## Project Structure
 
 ```text
@@ -41,6 +48,25 @@ nextjs-demo/
 │       ├── globals.css               # Global styles
 │       ├── error.tsx                 # Root error boundary
 │       ├── not-found.tsx             # Root 404 page
+│       │
+│       ├── api/
+│       │   └── contact-with-after/
+│       │       └── route.ts          # API route with 'after' API demo
+│       │
+│       ├── api-routes/
+│       │   ├── page.tsx              # API Routes demo page
+│       │   ├── loading.tsx           # Loading state
+│       │   └── components/
+│       │       └── contact-with-after-form.tsx  # Form component
+│       │
+│       ├── server-actions/
+│       │   ├── page.tsx              # Server Actions demo page
+│       │   ├── actions.ts            # Server Action definitions
+│       │   ├── loading.tsx           # Loading state
+│       │   └── components/
+│       │       ├── contact-form.tsx  # Contact form with Server Actions
+│       │       ├── todo-form.tsx     # Todo CRUD with optimistic UI
+│       │       └── upload-form.tsx   # File upload example
 │       │
 │       ├── static/
 │       │   └── page.tsx              # Static page example
@@ -188,6 +214,20 @@ npm run dev
 - Refresh while on photo - shows full page
 - Navigate back - returns to gallery
 
+### Server Actions
+
+- Visit `/server-actions` to see form handling without client-side JavaScript
+- Try the contact form - works with and without JavaScript enabled
+- Test the todo list with optimistic UI updates
+- Upload files to see progress tracking
+
+### API Routes with Background Processing
+
+- Visit `/api-routes` to see traditional API route patterns
+- Submit the contact form and get immediate response
+- Check server console to see background tasks running asynchronously
+- Compare response times with Server Actions approach
+
 ## Key Concepts
 
 ### Rendering Types
@@ -235,7 +275,7 @@ pnpm type-check    # TypeScript type checking without build
 
 ## Technologies
 
-- **Next.js 15.5.6** - React framework with App Router
+- **Next.js 16.0.0** - Latest React framework with App Router and new 'after' API
 - **React 19.2.0** - Latest React with improved features
 - **TypeScript 5** - Type safety and better DX
 - **Tailwind CSS v4** - Utility-first CSS (no config needed)
@@ -243,15 +283,16 @@ pnpm type-check    # TypeScript type checking without build
 - **Turbopack** - Fast bundler for development and production
 - **pnpm** - Fast, disk space efficient package manager
 
-## Next.js 15 Compatibility
+## Next.js 16 Compatibility
 
-This demo is fully compatible with Next.js 15 and includes:
+This demo is fully compatible with Next.js 16 and includes:
 
 - ✅ **Async `params`**: All dynamic routes properly await `params` before usage
 - ✅ **Promise-based APIs**: Correct handling of new async behavior
 - ✅ **React 19**: Optimized for the latest React features
 - ✅ **Turbopack**: Uses Turbopack for both dev and build
 - ✅ **App Router**: Modern routing patterns
+- ✅ **'after' API**: Background task processing for better performance
 
 ### Migration Notes
 
@@ -260,6 +301,7 @@ If upgrading from older Next.js versions:
 - Dynamic route params are now `Promise<{ id: string }>` instead of `{ id: string }`
 - Always `await params` before accessing properties
 - Update TypeScript types accordingly
+- New `after` API enables non-blocking background tasks in API routes
 
 ## Project Planning
 

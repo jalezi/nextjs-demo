@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **comprehensive Next.js 15.5.6 App Router demonstration** showcasing different rendering strategies, advanced routing patterns, and modern React 19 features. The codebase is educational and demonstrates patterns rather than implementing business logic.
+This is a **comprehensive Next.js 16.0.0 App Router demonstration** showcasing different rendering strategies, advanced routing patterns, Server Actions, API Routes with background processing, and modern React 19 features. The codebase is educational and demonstrates patterns rather than implementing business logic.
 
 **Important**: All application code is located in `src/app/` directory following Next.js best practices.
 
@@ -26,12 +26,12 @@ The app demonstrates 4 distinct rendering patterns with specific use cases:
 - `[id]/page.tsx` handles direct URL access/refresh as full page
 - Layout renders `{children}` and `{modal}` together
 
-### Next.js 15 Compatibility Requirements
+### Next.js 16 Compatibility Requirements
 
 **Critical**: All dynamic routes must properly handle async `params`:
 
 ```typescript
-// ✅ Correct (Next.js 15+)
+// ✅ Correct (Next.js 16+)
 export default async function Page({
   params,
 }: {
@@ -197,7 +197,7 @@ The root `layout.tsx` navigation should be updated when adding new demo routes t
 
 ## Project Structure
 
-All demo code is located in `src/app/` following Next.js 15 best practices:
+All demo code is located in `src/app/` following Next.js 16 best practices:
 
 ```
 src/app/
