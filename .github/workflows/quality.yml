@@ -40,8 +40,8 @@ jobs:
       - name: Run Biome CI
         run: biome ci .
 
-      - name: Type check
-        run: pnpm type-check
-
       - name: Build check
         run: pnpm build
+
+      - name: Type check
+        run: pnpm type-check
