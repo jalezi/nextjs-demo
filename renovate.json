@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "customManagers:biomeVersions"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@biomejs/biome"],
+      "groupName": "Biome updates"
+    }
+  ],
+  "lockFilePolicyVersion": "v4",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies"]
+}
