@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "dev:safe": "rm -rf .next && next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "dev:safe": "rm -rf .next && next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
