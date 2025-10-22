@@ -29,17 +29,27 @@ export function NextJSInfo({ renderingMode, children }: NextJSInfoProps) {
   };
 
   return (
-    <details className="mt-8 group">
-      <summary className="cursor-pointer p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg hover:from-blue-100 hover:to-indigo-100 transition-colors select-none">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-          <h3 className="text-lg font-semibold text-blue-900 inline">
-            Next.js {nextjsVersion} - Development & Production Behavior
-          </h3>
-        </div>
+    <details className="mt-8 mb-8 group">
+      <summary className="cursor-pointer p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg group-open:rounded-b-none hover:from-blue-100 hover:to-indigo-100 transition-colors select-none flex items-center gap-2 [&::-webkit-details-marker]:hidden [&::marker]:content-none">
+        <svg
+          className="w-4 h-4 text-blue-700 transition-transform group-open:rotate-90"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            fillRule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+        <h3 className="text-lg font-semibold text-blue-900">
+          Next.js {nextjsVersion} - Development & Production Behavior
+        </h3>
       </summary>
 
-      <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-lg space-y-4 text-sm">
+      <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-lg space-y-4 text-sm group-open:block">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <div className="flex items-center gap-2">

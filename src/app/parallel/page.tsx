@@ -30,10 +30,11 @@ export default function ParallelPage() {
 
       <NextJSInfo renderingMode="Mixed">
         <p>
-          <strong>Parallel Routes Note:</strong> This layout demonstrates
-          advanced routing patterns where multiple components can render
-          independently. Each slot (<code>@team</code>, <code>@analytics</code>)
-          can have different rendering strategies and data fetching patterns.
+          <strong>Mixed Rendering Note:</strong> This layout truly demonstrates
+          mixed rendering strategies in action - the main page content is SSG
+          (static), while the <code>@team</code> slot uses SSR with 1s API delay
+          and <code>@analytics</code> slot uses SSR with 1.5s delay. Each
+          renders independently with its own loading states.
         </p>
       </NextJSInfo>
     </div>

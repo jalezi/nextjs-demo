@@ -73,12 +73,14 @@ export default function PhotosPage() {
         ))}
       </div>
 
-      <NextJSInfo renderingMode="SSG">
+      <NextJSInfo renderingMode="Mixed">
         <p>
-          <strong>Intercepting Routes Note:</strong> This page uses static
-          generation for the gallery itself, but demonstrates advanced routing
-          patterns. Modal overlays are handled via intercepting routes (
-          <code>@modal/(.)[id]</code>) while maintaining proper URL structure.
+          <strong>Mixed Navigation Note:</strong> This demonstrates mixed
+          routing and rendering patterns - the gallery uses SSG (static photo
+          list), individual photo pages use SSG with params, modal overlays use
+          client-side intercepting routes (<code>@modal/(.)[id]</code>), and
+          navigation between them is seamless while maintaining proper URL
+          structure.
         </p>
       </NextJSInfo>
     </div>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { NextJSInfo } from "./components/nextjs-info";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,10 +56,7 @@ export default function RootLayout({ children }: Props) {
             </Link>
           </div>
         </nav>
-        <main className="container mx-auto p-8">
-          <NextJSInfo renderingMode="Mixed" />
-          {children}
-        </main>
+        <main className="container mx-auto p-8">{children}</main>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NextJSInfo } from "../../components/nextjs-info";
 
 const photos = [
   {
@@ -84,6 +85,17 @@ export default async function PhotoPage({ params }: Props) {
           route).
         </p>
       </div>
+
+      <NextJSInfo renderingMode="Mixed">
+        <p>
+          <strong>Mixed Route Handling Note:</strong> This same URL (
+          <code>/photos/{id}</code>) is handled differently depending on
+          navigation context - when accessed from the gallery it shows as a
+          modal overlay (intercepting route), when accessed directly or
+          refreshed it shows as this full page (SSG). Same content, different
+          user experience.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }
