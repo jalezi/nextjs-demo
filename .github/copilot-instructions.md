@@ -82,6 +82,73 @@ try {
 - **Turbopack** - Enabled by default for dev and build
 - **pnpm** - Package manager (not npm/yarn)
 
+### Commit Message Standards
+
+**All commits must follow Conventional Commits format** with optional Gitmojis as a senior developer would write:
+
+**Format**: `[emoji] <type>(<scope>): <description>` or `<type>(<scope>): <emoji> <description>`
+
+**Common Types**:
+- `feat`: ✨ New features or enhancements
+- `fix`: 🐛 Bug fixes  
+- `chore`: 🔧 Maintenance tasks (deps, tooling, etc.)
+- `build`: 📦 Build system or external dependencies
+- `docs`: 📝 Documentation changes
+- `refactor`: ♻️ Code restructuring without functionality changes
+- `style`: 💄 Code formatting, no logic changes
+- `test`: ✅ Adding or updating tests
+- `perf`: ⚡️ Performance improvements
+- `ci`: 👷 CI/CD pipeline changes
+- `revert`: ⏪️ Revert previous changes
+
+**Scope Examples**:
+- `deps`: Dependencies (`chore(deps): ⬆️ update react to 19.2.0`)
+- `deps-dev`: Dev dependencies (`chore(deps-dev): ⬆️ update biome to 2.2.7`)
+- `api`: API-related changes
+- `ui`: User interface changes
+- `routing`: Next.js routing changes
+- `components`: React component changes
+- `types`: TypeScript type definitions
+
+**Examples with Gitmojis**:
+```
+feat(routing): ✨ add parallel routes demo with analytics dashboard
+fix(ssg): 🐛 handle async params in dynamic routes for Next.js 15
+chore(deps-dev): ⬆️ update development dependencies
+build: 📦 update Next.js build configuration for production
+docs: 📝 update setup guide with new deployment instructions
+refactor(components): ♻️ extract reusable header navigation
+perf(images): ⚡️ optimize photo gallery with lazy loading
+test(api): ✅ add unit tests for server actions
+ci: 👷 update GitHub Actions workflow
+revert: ⏪️ revert breaking changes in navigation
+```
+
+**Multi-line Format** for complex changes:
+```
+feat(streaming): ✨ implement progressive data loading
+
+- Add streaming components with Suspense boundaries
+- Create slow/fast component examples
+- Include nested streaming patterns
+- Update documentation with performance notes
+```
+
+**Key Gitmoji References**:
+- ✨ `:sparkles:` - New features
+- 🐛 `:bug:` - Bug fixes
+- 📝 `:memo:` - Documentation
+- ⬆️ `:arrow_up:` - Upgrade dependencies
+- ⬇️ `:arrow_down:` - Downgrade dependencies
+- 🔧 `:wrench:` - Configuration files
+- 📦 `:package:` - Build system/packages
+- ♻️ `:recycle:` - Refactor code
+- ⚡️ `:zap:` - Performance improvements
+- 💄 `:lipstick:` - UI/styling
+- ✅ `:white_check_mark:` - Tests
+- 👷 `:construction_worker:` - CI/CD
+- ⏪️ `:rewind:` - Revert changes
+
 ## File Conventions
 
 ### Special File Patterns
