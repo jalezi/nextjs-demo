@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // Generate static pages for specific IDs at build time
 export async function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
@@ -27,15 +29,15 @@ export default async function SSGPostPage({ params }: Props) {
       <div className="bg-blue-50 p-4 rounded text-sm">
         <p className="font-semibold mb-2">Try these IDs:</p>
         <div className="flex gap-2">
-          <a href="/ssg/1" className="text-blue-600 hover:underline">
+          <Link href="/ssg/1" className="text-blue-600 hover:underline">
             ID 1
-          </a>
-          <a href="/ssg/2" className="text-blue-600 hover:underline">
+          </Link>
+          <Link href="/ssg/2" className="text-blue-600 hover:underline">
             ID 2
-          </a>
-          <a href="/ssg/3" className="text-blue-600 hover:underline">
+          </Link>
+          <Link href="/ssg/3" className="text-blue-600 hover:underline">
             ID 3
-          </a>
+          </Link>
         </div>
         <p className="mt-2 text-gray-600">
           These pages are pre-rendered at build time using

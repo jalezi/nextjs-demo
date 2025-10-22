@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import ErrorReporter from "./components/error-reporter";
 import FallbackUI from "./components/fallback-ui";
@@ -97,7 +98,7 @@ export default function ErrorHandlingPage() {
           </h3>
 
           <div className="space-y-4">
-            <a
+            <Link
               href="/error-handling/network"
               className="block bg-white p-4 rounded-lg border hover:border-blue-300 hover:shadow-md transition-all"
             >
@@ -108,9 +109,9 @@ export default function ErrorHandlingPage() {
               <p className="text-sm text-gray-600">
                 Connection timeouts, server unavailable, DNS failures
               </p>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/error-handling/validation"
               className="block bg-white p-4 rounded-lg border hover:border-yellow-300 hover:shadow-md transition-all"
             >
@@ -123,9 +124,9 @@ export default function ErrorHandlingPage() {
               <p className="text-sm text-gray-600">
                 Form validation, input formatting, data constraints
               </p>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/error-handling/server"
               className="block bg-white p-4 rounded-lg border hover:border-red-300 hover:shadow-md transition-all"
             >
@@ -136,7 +137,7 @@ export default function ErrorHandlingPage() {
               <p className="text-sm text-gray-600">
                 Internal server errors, API failures, database issues
               </p>
-            </a>
+            </Link>
           </div>
         </div>
 

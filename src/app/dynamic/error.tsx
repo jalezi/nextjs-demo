@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function DynamicError({
   error,
   reset,
@@ -19,12 +21,12 @@ export default function DynamicError({
         >
           Try again
         </button>
-        <a
+        <Link
           href="/"
           className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
         >
           Go Home
-        </a>
+        </Link>
       </div>
     </div>
   );

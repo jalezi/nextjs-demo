@@ -42,16 +42,16 @@ export default async function PostsPage() {
           <li>• Click any post to view details (with loading state)</li>
           <li>
             • Visit{" "}
-            <a href="/posts/999" className="text-blue-600 hover:underline">
+            <Link href="/posts/999" className="text-blue-600 hover:underline">
               /posts/999
-            </a>{" "}
+            </Link>{" "}
             to trigger error boundary
           </li>
           <li>
             • Visit{" "}
-            <a href="/posts/12345" className="text-blue-600 hover:underline">
+            <Link href="/posts/12345" className="text-blue-600 hover:underline">
               /posts/12345
-            </a>{" "}
+            </Link>{" "}
             to see not-found page
           </li>
         </ul>
