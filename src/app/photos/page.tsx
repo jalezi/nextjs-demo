@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NextJSInfo } from "../components/nextjs-info";
 
 const photos = [
   {
@@ -71,6 +72,15 @@ export default function PhotosPage() {
           </Link>
         ))}
       </div>
+
+      <NextJSInfo renderingMode="SSG">
+        <p>
+          <strong>Intercepting Routes Note:</strong> This page uses static
+          generation for the gallery itself, but demonstrates advanced routing
+          patterns. Modal overlays are handled via intercepting routes (
+          <code>@modal/(.)[id]</code>) while maintaining proper URL structure.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

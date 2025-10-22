@@ -1,3 +1,4 @@
+import { NextJSInfo } from "../components/nextjs-info";
 import MetricsCard from "./components/metrics-card";
 import PerformanceChart from "./components/performance-chart";
 import VitalsMonitor from "./components/vitals-monitor";
@@ -194,6 +195,16 @@ export default async function PerformancePage() {
           </span>
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSR">
+        <p>
+          <strong>Performance Monitoring Note:</strong> This dashboard uses
+          server-side rendering to ensure performance metrics are available
+          immediately. In production, this data would typically come from real
+          analytics services like Vercel Analytics or custom monitoring
+          solutions.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

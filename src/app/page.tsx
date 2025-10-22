@@ -1,3 +1,5 @@
+import { NextJSInfo } from "./components/nextjs-info";
+
 // This page is statically generated at build time
 export default async function StaticPage() {
   // This fetch is cached by default
@@ -24,6 +26,14 @@ export default async function StaticPage() {
           generated.
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSG">
+        <p>
+          <strong>SSG Note:</strong> This page is pre-rendered at build time.
+          The timestamp above will be the same for all users until the next
+          deployment. Perfect for content that doesn't change frequently.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

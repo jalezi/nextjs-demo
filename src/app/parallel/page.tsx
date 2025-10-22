@@ -1,3 +1,5 @@
+import { NextJSInfo } from "../components/nextjs-info";
+
 export default function ParallelPage() {
   return (
     <div className="space-y-4">
@@ -25,6 +27,15 @@ export default function ParallelPage() {
           </li>
         </ul>
       </div>
+
+      <NextJSInfo renderingMode="Mixed">
+        <p>
+          <strong>Parallel Routes Note:</strong> This layout demonstrates
+          advanced routing patterns where multiple components can render
+          independently. Each slot (<code>@team</code>, <code>@analytics</code>)
+          can have different rendering strategies and data fetching patterns.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NextJSInfo } from "../../components/nextjs-info";
 
 // Generate static pages for specific IDs at build time
 export async function generateStaticParams() {
@@ -44,6 +45,15 @@ export default async function SSGPostPage({ params }: Props) {
           generateStaticParams()
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSG">
+        <p>
+          <strong>SSG with Params Note:</strong> This demonstrates{" "}
+          <code>generateStaticParams()</code> to pre-render specific dynamic
+          routes at build time. Only pages for IDs 1, 2, and 3 are generated -
+          other IDs will return 404.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

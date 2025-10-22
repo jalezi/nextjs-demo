@@ -1,3 +1,4 @@
+import { NextJSInfo } from "../components/nextjs-info";
 import { getContacts, getTodos } from "./actions";
 import ContactForm from "./components/contact-form";
 import TodoForm from "./components/todo-form";
@@ -141,6 +142,15 @@ export default async function ServerActionsPage() {
           </span>
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSR">
+        <p>
+          <strong>Server Actions Note:</strong> This page demonstrates Next.js
+          Server Actions with progressive enhancement. Forms work without
+          JavaScript and are enhanced when it's available. Server Actions run on
+          every request and provide type-safe mutations.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

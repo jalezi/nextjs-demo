@@ -1,3 +1,5 @@
+import { NextJSInfo } from "../components/nextjs-info";
+
 // Revalidate every 60 seconds
 export const revalidate = 60;
 
@@ -105,6 +107,15 @@ export default async function ISRPage() {
           <li>Refresh again - you'll see the updated data from GitHub</li>
         </ol>
       </div>
+
+      <NextJSInfo renderingMode="ISR">
+        <p>
+          <strong>ISR Note:</strong> This page uses{" "}
+          <code>export const revalidate = 60</code> to balance freshness with
+          performance. Pages are regenerated in the background after 60 seconds,
+          serving stale content while the new version is being prepared.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

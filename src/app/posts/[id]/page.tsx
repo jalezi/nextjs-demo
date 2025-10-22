@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NextJSInfo } from "../../components/nextjs-info";
 
 type Props = PageProps<"/posts/[id]">;
 
@@ -51,6 +52,15 @@ export default async function PostPage({ params }: Props) {
           <li>Not-found page (try /posts/12345)</li>
         </ul>
       </div>
+
+      <NextJSInfo renderingMode="ISR">
+        <p>
+          <strong>ISR Note:</strong> Individual posts are generated on-demand
+          and cached with 60-second revalidation. This allows for both
+          performance and content freshness. Uses async <code>params</code> as
+          required by Next.js 15+.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { NextJSInfo } from "../components/nextjs-info";
+
 // Force dynamic rendering - no caching
 export const dynamic = "force-dynamic";
 
@@ -36,6 +38,15 @@ export default async function DynamicPage() {
           The stars count may also update if it changed since your last visit!
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSR">
+        <p>
+          <strong>SSR Note:</strong> This page uses{" "}
+          <code>export const dynamic = "force-dynamic"</code> and{" "}
+          <code>cache: "no-store"</code> to ensure fresh data on every request.
+          Perfect for real-time data that changes frequently.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

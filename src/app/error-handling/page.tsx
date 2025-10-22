@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { NextJSInfo } from "../components/nextjs-info";
 import ErrorReporter from "./components/error-reporter";
 import FallbackUI from "./components/fallback-ui";
 import PageTimestamp from "./components/page-timestamp";
@@ -326,6 +327,16 @@ export default function ErrorHandlingPage() {
           <span className="ml-4">🛡️ Error handling system ready</span>
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSR">
+        <p>
+          <strong>Error Handling Note:</strong> This page uses client-side
+          rendering to demonstrate interactive error handling patterns. Error
+          boundaries, retry mechanisms, and user feedback systems work the same
+          way in both dev and production, but production provides more
+          user-friendly error messages.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

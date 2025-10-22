@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: For demo it's ok*/
 import { Suspense } from "react";
+import { NextJSInfo } from "../components/nextjs-info";
 import FastComponent from "./components/fast-component";
 import ProgressiveForm from "./components/progressive-form";
 import SlowComponent from "./components/slow-component";
@@ -206,6 +207,16 @@ export default function StreamingPage() {
           </span>
         </p>
       </div>
+
+      <NextJSInfo renderingMode="SSR">
+        <p>
+          <strong>Streaming Note:</strong> This page demonstrates React 18
+          Suspense with streaming SSR. Components render progressively as their
+          data becomes available, improving perceived performance and allowing
+          users to interact with fast-loading content while slower parts
+          continue loading.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }

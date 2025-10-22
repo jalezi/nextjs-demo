@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NextJSInfo } from "../components/nextjs-info";
 
 interface Post {
   id: number;
@@ -56,6 +57,15 @@ export default async function PostsPage() {
           </li>
         </ul>
       </div>
+
+      <NextJSInfo renderingMode="ISR">
+        <p>
+          <strong>ISR Note:</strong> This posts listing uses{" "}
+          <code>export const revalidate = 30</code> for faster updates than the
+          main ISR demo. Each individual post page also uses ISR with its own
+          revalidation strategy.
+        </p>
+      </NextJSInfo>
     </div>
   );
 }
