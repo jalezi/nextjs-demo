@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **comprehensive Next.js 16.0.0 App Router demonstration** showcasing different rendering strategies, advanced routing patterns, Server Actions, API Routes with background processing, and modern React 19 features. The codebase is educational and demonstrates patterns rather than implementing business logic.
+This is a **comprehensive Next.js 16.0.0 App Router demonstration** showcasing different rendering strategies, advanced routing patterns, Server Actions, API Routes with background processing, streaming patterns, error handling, and modern React 19 features. The codebase is educational and demonstrates patterns rather than implementing business logic.
 
 **Important**: All application code is located in `src/app/` directory following Next.js best practices.
 
@@ -25,6 +25,30 @@ The app demonstrates 4 distinct rendering patterns with specific use cases:
 - `@modal/(.)[id]/page.tsx` intercepts navigation to show modal overlay
 - `[id]/page.tsx` handles direct URL access/refresh as full page
 - Layout renders `{children}` and `{modal}` together
+
+**Server Actions (`/server-actions/`)**: Form submissions and mutations using `"use server"`:
+- `actions.ts` exports server functions with `revalidatePath()` for cache invalidation
+- Client components use `useFormState` and `useFormStatus` for progressive enhancement
+- Demonstrates validation, error handling, and optimistic updates
+
+**Streaming (`/streaming/`)**: Progressive loading with Suspense boundaries:
+- Nested `<Suspense>` components with custom `LoadingSkeleton` fallbacks
+- `FastComponent` vs `SlowComponent` demonstrate loading prioritization
+- Progressive form loading shows incremental UI updates
+
+**Error Handling (`/error-handling/`)**: Comprehensive error management patterns:
+- Global and route-level `error.tsx` boundaries with retry functionality
+- Client-side error reporting and user feedback systems
+- Network, server, and validation error examples with fallback UI
+
+**Performance Monitoring (`/performance/`)**: Web Vitals and metrics tracking:
+- Mock performance data generation with realistic patterns
+- Core Web Vitals visualization with charts and metrics cards
+- Client-side monitoring components for real performance tracking
+
+**API Routes with Background Tasks (`/api-routes/`)**: Next.js `after` API demo:
+- `/api/contact-with-after/route.ts` shows immediate response + background processing
+- Form submissions trigger background tasks without blocking user experience
 
 ### Next.js 16 Compatibility Requirements
 
@@ -78,9 +102,11 @@ try {
 ### Technology Stack Specifics
 
 - **Biome** replaces ESLint/Prettier - use `biome.json` for configuration
-- **Tailwind CSS v4** - No config file needed, uses PostCSS only
-- **Turbopack** - Enabled by default for dev and build
+- **Tailwind CSS v4** - No config file needed, uses PostCSS only  
+- **Turbopack** - Default bundler for dev mode (not Webpack)
 - **pnpm** - Package manager (not npm/yarn)
+- **Lefthook** - Git hooks management via `lefthook.yml`
+- **TypeScript 5.9** - Strict mode with Next.js typed routes enabled
 
 ### Commit Message Standards
 
@@ -163,12 +189,21 @@ feat(streaming): ✨ implement progressive data loading
 Client components use `"use client"` for:
 - Router hooks (`useParams`, `useRouter`)
 - Event handlers and interactivity
-- Error boundaries
+- Error boundaries (`error.tsx` files)
+- Form state management (`useFormState`, `useFormStatus`)
 
 Server components (default) for:
 - Data fetching with native `fetch()`
 - SEO metadata
 - Static content rendering
+- Server Actions execution
+
+### Navigation Structure
+
+The `src/app/components/header.tsx` organizes routes into logical groups:
+- **Primary**: Home, Static, Dynamic, ISR (core rendering patterns)
+- **Features**: SSG Params, Posts, Parallel, Photos (advanced routing)
+- **Advanced**: Server Actions, API Routes, Performance, Streaming, Error Handling
 
 ## External Dependencies
 
@@ -206,20 +241,27 @@ src/app/
 ├── globals.css                # Global styles
 ├── error.tsx                  # Root error boundary
 ├── not-found.tsx              # Root 404 page
+├── components/                # Shared components (Header, NextJSInfo)
+├── api/                       # API routes with background processing
+├── api-routes/                # API routes demo page + components
 ├── dynamic/                   # SSR examples
+├── error-handling/            # Error boundaries and fallback patterns
 ├── isr/                       # ISR examples
-├── parallel/                  # Parallel routes demo
-├── photos/                    # Intercepting routes demo
+├── parallel/                  # Parallel routes demo (@team, @analytics)
+├── performance/               # Web Vitals monitoring dashboard
+├── photos/                    # Intercepting routes modal pattern
 ├── posts/                     # ISR with dynamic routes
+├── server-actions/            # Server Actions with forms
 ├── ssg/                       # SSG with params
-└── static/                    # Static generation demo
+├── static/                    # Static generation demo
+└── streaming/                 # Suspense and progressive loading
 ```
 
 ## Planning and Tasks
 
 Future improvements are documented in `/docs/tasks/IMPROVEMENT_TASKS.md` including:
-- Server Actions implementation
-- Performance monitoring dashboard
-- Advanced streaming patterns
-- Security best practices
-- PWA capabilities
+- Next.js 16 Cache Components and enhanced caching APIs
+- Proxy architecture patterns
+- React 19.2 features and React Compiler integration
+- Security best practices and authentication
+- PWA capabilities and advanced middleware patterns
