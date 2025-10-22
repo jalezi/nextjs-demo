@@ -7,6 +7,11 @@ export default async function PostPage({ params }: Props) {
   // Await params before using its properties (Next.js 15+ requirement)
   const { id } = await params;
 
+  // Simulate potential error for demo - check before API call
+  if (id === "999") {
+    throw new Error("Post not accessible - This is a demo error!");
+  }
+
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
     next: { revalidate: 60 },
   });
@@ -16,11 +21,6 @@ export default async function PostPage({ params }: Props) {
   }
 
   const post = await res.json();
-
-  // Simulate potential error for demo
-  if (id === "999") {
-    throw new Error("Post not accessible - This is a demo error!");
-  }
 
   return (
     <div className="space-y-4">
