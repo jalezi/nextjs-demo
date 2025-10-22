@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import packageJson from "../../../package.json";
 
 interface NextJSInfoProps {
   renderingMode: "SSG" | "SSR" | "ISR" | "Mixed";
@@ -7,7 +8,7 @@ interface NextJSInfoProps {
 
 export function NextJSInfo({ renderingMode, children }: NextJSInfoProps) {
   const isDev = process.env.NODE_ENV === "development";
-  const nextjsVersion = "15.5.6"; // From package.json
+  const nextjsVersion = packageJson.dependencies.next;
 
   const renderingBehavior = {
     SSG: {
@@ -30,7 +31,7 @@ export function NextJSInfo({ renderingMode, children }: NextJSInfoProps) {
 
   return (
     <details className="mt-8 mb-8 group">
-      <summary className="cursor-pointer p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg group-open:rounded-b-none hover:from-blue-100 hover:to-indigo-100 transition-colors select-none flex items-center gap-2 [&::-webkit-details-marker]:hidden [&::marker]:content-none">
+      <summary className="cursor-pointer p-4 bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg group-open:rounded-b-none hover:from-blue-100 hover:to-indigo-100 transition-colors select-none flex items-center gap-2 [&::-webkit-details-marker]:hidden [&::marker]:content-none">
         <svg
           className="w-4 h-4 text-blue-700 transition-transform group-open:rotate-90"
           fill="currentColor"
@@ -49,7 +50,7 @@ export function NextJSInfo({ renderingMode, children }: NextJSInfoProps) {
         </h3>
       </summary>
 
-      <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-lg space-y-4 text-sm group-open:block">
+      <div className="p-4 bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 border-t-0 rounded-b-lg space-y-4 text-sm group-open:block">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
