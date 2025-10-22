@@ -1,4 +1,64 @@
-# Next.js Demo Improvement Tasks
+---
+title: "Next.js Demo Improvement Tasks"
+description: "Comprehensive roadmap for Next.js 16 demo project enhancements"
+version: "2.0.0"
+last_updated: "2025-10-22"
+next_js_version: "16.0.0"
+react_version: "19.2.0"
+status: "active"
+priority_levels: ["high", "medium", "low"]
+categories:
+  - "next-js-16"
+  - "cache-components"
+  - "caching-apis"
+  - "proxy-architecture"
+  - "react-19.2"
+  - "react-compiler"
+  - "performance"
+  - "server-actions"
+  - "streaming"
+  - "error-handling"
+  - "middleware"
+  - "pwa"
+  - "security"
+  - "testing"
+  - "authentication"
+tags:
+  - "planning"
+  - "development"
+  - "educational"
+  - "demo"
+  - "tutorial"
+  - "best-practices"
+completed_tasks: 5
+total_tasks: 25
+completion_percentage: 20
+breaking_changes:
+  - "Node.js 18 → 20.9+ required (LTS)"
+  - "TypeScript 5.1+ minimum"
+  - "middleware.ts → proxy.ts (Node.js runtime)"
+  - "revalidateTag() requires cacheLife profile as second argument"
+  - "async params handling (await params, await searchParams)"
+  - "async cookies(), headers(), draftMode() access"
+  - "Turbopack now default bundler (opt-out with --webpack)"
+  - "AMP support completely removed"
+  - "next lint command removed (use Biome/ESLint directly)"
+  - "Parallel routes require explicit default.js files"
+new_features:
+  - "Cache Components"
+  - "Enhanced Caching APIs"
+  - "Proxy.ts Architecture"
+  - "React 19.2 Features"
+  - "React Compiler"
+  - "Turbopack Stable"
+authors:
+  - "GitHub Copilot"
+contributors:
+  - "jalezi"
+project_type: "educational-demo"
+difficulty_levels: ["beginner", "intermediate", "advanced"]
+estimated_total_hours: 80
+---
 
 ## 📋 Overview
 
@@ -16,8 +76,18 @@ This document outlines comprehensive improvements for the Next.js Demo project t
 
 ### 🎯 Medium Priority (Strong Educational Value)
 
-- [ ] 🔧 Middleware Showcase
-- [ ] 🌐 Edge Computing Examples (PROMOTED from Lower Priority)
+#### Next.js 16 Core Features
+
+- [ ] 🎯 **Cache Components** with `"use cache"` directive and PPR
+- [ ] 🔄 **Enhanced Caching APIs** (updateTag, refresh, revalidateTag v2)
+- [ ] 🔗 **Proxy.ts Architecture** (migration from middleware.ts)
+- [ ] ⚛️ **React 19.2 Features** (View Transitions, useEffectEvent, Activity)
+- [ ] ⚡ **React Compiler Integration** (stable automatic memoization)
+
+#### Additional Features
+
+- [ ] � Middleware Showcase (legacy + proxy.ts patterns)
+- [ ] 🌐 Edge Computing Examples
 - [ ] 📱 PWA Capabilities
 - [ ] 🔒 Security Best Practices
 - [ ] 🎨 Advanced UI Patterns
@@ -126,9 +196,278 @@ All high priority tasks have been successfully implemented with excellent qualit
 src/app/performance/
 ├── page.tsx                    # Dashboard overview
 
+---
+
+## 🚀 Next.js 16 Migration Checklist
+
+### Critical Breaking Changes
+
+#### 1. Runtime & Dependencies
+
+- [ ] **Node.js**: Upgrade from 18.x to 20.9+ (LTS)
+- [ ] **TypeScript**: Upgrade to 5.1+ minimum
+- [ ] **Browser Support**: Chrome/Edge 111+, Firefox 111+, Safari 16.4+
+
+#### 2. Bundler Changes
+
+- [ ] **Turbopack Default**: Now default bundler (2-5x faster builds)
+- [ ] **Webpack Opt-out**: Use `next dev --webpack` if needed
+- [ ] **Babel Config**: Auto-enabled in Turbopack if babel.config.js exists
+
+#### 3. Architecture Changes
+
+- [ ] **middleware.ts → proxy.ts**: Rename and update export function name
+- [ ] **Runtime**: proxy.ts runs on Node.js runtime (not Edge)
+- [ ] **Async APIs**: Update cookies(), headers(), draftMode() to use await
+
+#### 4. Caching API Updates
+
+- [ ] **revalidateTag()**: Add cacheLife profile as second argument
+- [ ] **updateTag()**: New Server Actions-only API for immediate updates
+- [ ] **refresh()**: New API for refreshing uncached data only
+
+#### 5. Route Handling
+
+- [ ] **Async Params**: Ensure all params/searchParams use await
+- [ ] **Parallel Routes**: Add explicit default.js files to all slots
+- [ ] **PPR Migration**: Remove experimental.ppr, use cacheComponents
+
+#### 6. Removed Features
+
+- [ ] **AMP Support**: Remove all AMP-related code and configs
+- [ ] **next lint**: Replace with direct Biome/ESLint usage
+- [ ] **Legacy Configs**: Remove serverRuntimeConfig, publicRuntimeConfig
+
+### New Features to Adopt
+
+#### 1. Cache Components
+
+```typescript
+// Enable in next.config.ts
+const nextConfig = {
+  cacheComponents: true,
+};
+
+// Use in components
+"use cache";
+export default function CachedComponent() {
+  return <div>Cached content</div>;
+}
+```
+
+#### 2. Enhanced Caching
+
+```typescript
+// Server Actions with immediate updates
+'use server';
+import { updateTag } from 'next/cache';
+
+export async function updateProfile(data) {
+  await db.update(data);
+  updateTag('user-profile'); // Immediate cache update
+}
+
+// Background revalidation
+import { revalidateTag } from 'next/cache';
+revalidateTag('blog-posts', 'max'); // Requires cacheLife profile
+```
+
+#### 3. Proxy Architecture
+
+```typescript
+// proxy.ts (replaces middleware.ts)
+export default function proxy(request: NextRequest) {
+  return NextResponse.redirect(new URL('/home', request.url));
+}
+```
+
+### Migration Priority
+
+1. **Critical**: Node.js, TypeScript, async APIs (required for compatibility)
+2. **High**: Caching APIs, proxy.ts (major feature improvements)
+3. **Medium**: Cache Components, React Compiler (performance gains)
+4. **Low**: React 19.2 features (nice-to-have enhancements)
+
+---
+
 ## 🎯 Medium Priority Tasks
 
-### 5. Middleware Showcase (`/middleware`)
+### 5. Cache Components Demo (`/cache-components`)
+
+**Complexity:** High | **Impact:** High | **Time:** 6-8 hours | **🆕 Next.js 16**
+
+**Description:** Demonstrate the new Cache Components feature with `"use cache"` directive and Partial Pre-Rendering (PPR).
+
+**Implementation:**
+
+- [ ] Basic `"use cache"` directive usage on components and functions
+- [ ] PPR integration with dynamic and static sections
+- [ ] Cache key generation and invalidation
+- [ ] Performance comparison with previous caching methods
+- [ ] Interactive cache state visualization
+
+**Files to Create:**
+
+```text
+next.config.ts                 # Enable cacheComponents: true
+src/app/cache-components/
+├── page.tsx                   # Overview and comparison
+├── basic/
+│   └── page.tsx              # Basic "use cache" examples
+├── ppr/
+│   └── page.tsx              # PPR integration demo
+├── performance/
+│   └── page.tsx              # Performance comparison
+└── components/
+    ├── cached-component.tsx   # "use cache" component
+    ├── cached-function.tsx    # "use cache" function
+    └── cache-visualizer.tsx   # Interactive cache state
+```
+
+---
+
+### 6. Enhanced Caching APIs Demo (`/caching-apis`)
+
+**Complexity:** Medium | **Impact:** High | **Time:** 4-5 hours | **🆕 Next.js 16**
+
+**Description:** Showcase the new `updateTag()`, `refresh()`, and updated `revalidateTag()` APIs.
+
+**Implementation:**
+
+- [ ] `updateTag()` for immediate cache updates in Server Actions
+- [ ] `refresh()` for uncached data refresh
+- [ ] Updated `revalidateTag()` with cacheLife profiles
+- [ ] Interactive demo comparing different invalidation strategies
+- [ ] Real-world use cases (user profiles, notifications, etc.)
+
+**Files to Create:**
+
+```text
+src/app/caching-apis/
+├── page.tsx                   # Overview and API comparison
+├── update-tag/
+│   ├── page.tsx              # updateTag() demo
+│   └── actions.ts            # Server Actions with updateTag
+├── refresh/
+│   ├── page.tsx              # refresh() demo
+│   └── actions.ts            # Server Actions with refresh
+├── revalidate-tag/
+│   ├── page.tsx              # revalidateTag() v2 demo
+│   └── actions.ts            # Server Actions with profiles
+└── components/
+    ├── profile-form.tsx      # User profile update example
+    ├── notification-bell.tsx # Notification count refresh
+    └── cache-demo-card.tsx   # Interactive cache testing
+```
+
+---
+
+### 7. Proxy.ts Architecture Demo (`/proxy`)
+
+**Complexity:** Medium | **Impact:** Medium | **Time:** 3-4 hours | **🆕 Next.js 16**
+
+**Description:** Demonstrate the new `proxy.ts` architecture replacing `middleware.ts`.
+
+**Implementation:**
+
+- [ ] Migration guide from `middleware.ts` to `proxy.ts`
+- [ ] Node.js runtime request interception patterns
+- [ ] Network boundary clarification examples
+- [ ] Side-by-side comparison of middleware vs proxy
+- [ ] Common proxy use cases (redirects, headers, etc.)
+
+**Files to Create:**
+
+```text
+proxy.ts                       # Main proxy file (Node.js runtime)
+middleware.ts                  # Legacy middleware (deprecated demo)
+src/app/proxy/
+├── page.tsx                   # Proxy overview and migration guide
+├── migration/
+│   └── page.tsx              # Migration examples
+├── patterns/
+│   └── page.tsx              # Common proxy patterns
+└── components/
+    ├── proxy-inspector.tsx   # Request/response inspector
+    └── migration-guide.tsx   # Interactive migration tool
+```
+
+---
+
+### 8. React 19.2 Features Demo (`/react-19`)
+
+**Complexity:** Medium | **Impact:** Medium | **Time:** 4-5 hours | **🆕 Next.js 16**
+
+**Description:** Showcase React 19.2 features including View Transitions, useEffectEvent, and Activity component.
+
+**Implementation:**
+
+- [ ] View Transitions for smooth page navigation
+- [ ] `useEffectEvent` for non-reactive logic extraction
+- [ ] `<Activity>` component for background state management
+- [ ] Interactive examples of each feature
+- [ ] Performance implications and best practices
+
+**Files to Create:**
+
+```text
+src/app/react-19/
+├── page.tsx                   # React 19.2 overview
+├── view-transitions/
+│   ├── page.tsx              # View Transitions demo
+│   └── components/
+│       ├── animated-card.tsx # Transition examples
+│       └── navigation.tsx    # Smooth navigation
+├── use-effect-event/
+│   ├── page.tsx              # useEffectEvent demo
+│   └── components/
+│       ├── analytics.tsx     # Non-reactive analytics
+│       └── chat.tsx          # Event extraction example
+└── activity/
+    ├── page.tsx              # Activity component demo
+    └── components/
+        ├── background-task.tsx # Background activity
+        └── multi-tab.tsx      # Multi-tab coordination
+```
+
+---
+
+### 9. React Compiler Demo (`/react-compiler`)
+
+**Complexity:** Medium | **Impact:** High | **Time:** 3-4 hours | **🆕 Next.js 16**
+
+**Description:** Demonstrate stable React Compiler integration for automatic memoization.
+
+**Implementation:**
+
+- [ ] Before/after performance comparison
+- [ ] Automatic memoization examples
+- [ ] Bundle size impact analysis
+- [ ] Compilation time metrics
+- [ ] Interactive performance monitoring
+
+**Files to Create:**
+
+```text
+next.config.ts                 # reactCompiler: true
+babel.config.js               # React Compiler plugin
+src/app/react-compiler/
+├── page.tsx                   # Compiler overview
+├── performance/
+│   └── page.tsx              # Performance comparison
+├── examples/
+│   ├── page.tsx              # Memoization examples
+│   ├── heavy-component.tsx   # Complex component
+│   └── optimized-list.tsx    # List optimization
+└── components/
+    ├── render-counter.tsx    # Re-render tracking
+    ├── performance-meter.tsx # Real-time metrics
+    └── compiler-toggle.tsx   # Enable/disable demo
+```
+
+---
+
+### 10. Middleware Showcase (`/middleware`)
 
 **Complexity:** Medium | **Impact:** Medium | **Time:** 4-5 hours
 
