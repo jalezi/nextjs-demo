@@ -20,6 +20,7 @@ const featuresLinks = [
 
 const advancedLinks = [
   { href: "/server-actions" as Route, label: "Server Actions" },
+  { href: "/api-routes" as Route, label: "API Routes" },
   { href: "/performance" as Route, label: "Performance" },
   { href: "/streaming" as Route, label: "Streaming" },
   { href: "/error-handling" as Route, label: "Error Handling" },
