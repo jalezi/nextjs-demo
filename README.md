@@ -1,6 +1,20 @@
 # Next.js Demo App - Complete Features
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) [![Formatted with Biome](https://img.shields.io/badge/Formatted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/) [![Linted with Biome](https://img.shields.io/badge/Linted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/) [![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
+<!-- Primary badges -->
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.0-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+<!-- Quality & Tools -->
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jalezi/nextjs-demo/quality.yml?branch=main&style=flat&logo=github)](https://github.com/jalezi/nextjs-demo/actions/workflows/quality.yml)
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
+[![Renovate](https://img.shields.io/badge/Renovate-enabled-brightgreen?style=flat&logo=renovatebot)](https://renovatebot.com/)
+
+<!-- Additional Tech Stack -->
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![pnpm](https://img.shields.io/badge/pnpm-latest-F69220?style=flat&logo=pnpm)](https://pnpm.io/)
+[![Educational](https://img.shields.io/badge/Purpose-Educational-yellow?style=flat)](https://github.com/jalezi/nextjs-demo)
 
 A comprehensive demonstration of Next.js 16 App Router features including different rendering strategies, data fetching methods, parallel routes, intercepting routes, API routes with background processing, and error handling.
 
